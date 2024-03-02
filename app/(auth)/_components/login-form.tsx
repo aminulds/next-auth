@@ -8,6 +8,9 @@ import { LoginSchema } from '@/schemas';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { FormError } from '@/components/form-error';
+import { FormSuccess } from '@/components/form-success';
+import { login } from '@/actions/login';
 
 export const LoginForm = () => {
     const form = useForm<z.infer<typeof LoginSchema>>({
@@ -19,7 +22,7 @@ export const LoginForm = () => {
     });
 
     const onSubmit = (values: z.infer<typeof LoginSchema>) => {
-        console.log(values);
+        login(values);
     }
 
     return (
@@ -59,6 +62,8 @@ export const LoginForm = () => {
                             )}
                         />
                     </div>
+                    <FormError message="Invalid email." />
+                    <FormSuccess message="Login data sent." />
                     <Button type="submit" className="w-full">Login</Button>
                 </form>
             </Form>
