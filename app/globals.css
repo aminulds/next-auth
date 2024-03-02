@@ -1,6 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html,
+body,
+:root {
+  height: 100%;
+}
  
 @layer base {
   :root {
@@ -72,5 +78,11 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .bg-gradient-primary {
+    @apply bg-gradient-to-b from-indigo-400 via-indigo-500 to-indigo-600
   }
 }
