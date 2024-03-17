@@ -4,6 +4,7 @@ import {auth, signOut} from "@/auth";
 const SettingPage = async () => {
     const session = await auth();
     const user = JSON.stringify(session?.user);
+    session?.user
 
     return (
         <div>
