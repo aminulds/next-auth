@@ -4,12 +4,22 @@ import {PrismaAdapter} from "@auth/prisma-adapter";
 import {db} from "@/lib/db";
 import authConfig from "@/auth.config";
 import {getUserById} from "@/data/user";
-import {ExtendedUser} from "@/next-auth";
 
 export const {
     handlers: {GET, POST},
     auth, signIn, signOut
 } = NextAuth({
+    pages: {
+        signIn: "/login",
+    },
+    events: {
+        async linkAccount({user}) {
+            await db.user.update({
+                where: {id: user.id as string},
+                data: {emailVerified: new Date()}
+            })
+        }
+    },
     callbacks: {
         // check is email verified?
         // async signIn({user}) {
@@ -37,7 +47,7 @@ export const {
 
             token.role = existingUser.role;
             return token;
-        }
+        },
     },
     adapter: PrismaAdapter(db),
     session: {strategy: "jwt"},
