@@ -26,8 +26,6 @@ const NewVerificationForm = () => {
                 setError("Something went wrong!")
             });
         }
-
-
     }, [token]);
     
     useEffect(() => {
