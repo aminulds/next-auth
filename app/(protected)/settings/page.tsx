@@ -1,17 +1,10 @@
-"use client";
-import React from 'react';
-import {logout} from "@/actions/logout";
-import {useCurrentUser} from "@/hooks/use-current-user";
+import {currentRole} from "@/lib/current-role";
 
-const SettingPage = () => {
-    const user = useCurrentUser();
-    const handleSignOut = () => {
-        logout();
-    }
-
+const SettingPage = async () => {
+    const role = await currentRole();
     return (
-        <div className="bg-white p-4 rounded-sm">
-            <button onClick={handleSignOut} type="submit">Sign Out</button>
+        <div>
+            Role: {role}
         </div>
     );
 };
