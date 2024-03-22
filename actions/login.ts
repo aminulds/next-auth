@@ -38,7 +38,7 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
             if (twoFactorToken.token !== code) return {error: "Invalid code!"}
 
             const hasExpired = new Date(twoFactorToken.expires) < new Date();
-            if (hasExpired) return "Code expired!";
+            if (hasExpired) return {error: "Code expired!"};
             await db.twoFactorToken.delete({where: {id: twoFactorToken.id}});
 
             const existingConfirmation = await getTwoFactorConfirmationByUserId(existingUser.id);

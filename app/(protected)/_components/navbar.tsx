@@ -14,7 +14,7 @@ const Navbar = () => {
         {name: "Settings", link: "/settings"},
     ]
     return (
-        <nav className="bg-secondary flex justify-between items-center py-4 px-8 fixed top-0 w-full">
+        <nav className="bg-secondary flex justify-between items-center py-3 px-8 fixed top-0 w-full">
             <div className="flex gap-x-2">
                 {routes.map((route) =>
                     <Button key={route.name} asChild variant={pathname === route.link ? "default" : "outline"}>

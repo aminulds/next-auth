@@ -9,7 +9,7 @@ interface UserInfoProps {
 }
 
 const UserInfo = ({user, label}: UserInfoProps) => {
-    return (<Card className="min-w-[360px] max-w-[500px] max shadow-md">
+    return (<Card className="min-w-[500px] shadow-md">
             <CardHeader>
                 <p className="text-2xl font-semibold text-center">{label}</p>
                 {/*{JSON.stringify(user)}*/}
